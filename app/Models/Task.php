@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\CommonQueryScopes;
 
 class Task extends Model
 {
     use HasFactory;
+    use CommonQueryScopes;
 
     protected $casts = [
         'status' => TaskStatus::class,
