@@ -92,17 +92,7 @@ Set collection variables:
 
 ## Seeded Accounts
 All seeded users have password:
-- `password`
-
-Admins:
-- `admin1@example.com`
-- `admin2@example.com`
-- `admin3@example.com`
-
-Managers:
-- `manager1@example.com`
-- `manager2@example.com`
-- `manager3@example.com`
+- `Userpass@pmslocal`
 
 ## Testing
 Run automated tests:
