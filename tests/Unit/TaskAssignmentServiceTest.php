@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
-use App\Services\V1\TaskAssignmentService;
+use App\Services\V1\TaskAssignmentServices;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,7 +15,7 @@ class TaskAssignmentServiceTest extends TestCase
 
     public function test_assigns_task_to_user_role_user(): void
     {
-        $service = app(TaskAssignmentService::class);
+        $service = app(TaskAssignmentServices::class);
 
         $project = Project::factory()->create();
 

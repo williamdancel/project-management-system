@@ -9,7 +9,7 @@ use App\Models\User;
 class TaskService
 {
     public function __construct(
-        private TaskAssignmentService $assignment
+        private TaskAssignmentServices $assignment
     ) {}
 
     public function tasksByProject(Project $project, int $perPage = 10)

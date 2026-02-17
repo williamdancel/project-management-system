@@ -5,12 +5,38 @@
     "description": "Project Management System API (Laravel 12) - v1",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
   "variable": [
-    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "base_url", "value": "http://127.0.0.1:8000" },
     { "key": "version", "value": "v1" },
     { "key": "token", "value": "" },
     { "key": "project_id", "value": "" },
     { "key": "task_id", "value": "" }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": []
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": []
+      }
+    }
   ],
   "item": [
     {
@@ -20,8 +46,15 @@
           "name": "Register",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/register", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "register"] },
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "register"]
+            },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"password\",\n  \"password_confirmation\": \"password\"\n}"
@@ -32,11 +65,18 @@
           "name": "Login",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/login", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "login"] },
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "login"]
+            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin1@example.com\",\n  \"password\": \"password\"\n}"
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Userpass@pmslocal\"\n}"
             }
           }
         },
@@ -44,16 +84,24 @@
           "name": "Me",
           "request": {
             "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/me", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "me"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "me"]
+            }
           }
         },
         {
           "name": "Logout",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/logout", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "logout"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "logout"]
+            }
           }
         }
       ]
@@ -65,16 +113,24 @@
           "name": "List Projects",
           "request": {
             "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/projects", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "projects"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/projects",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "projects"]
+            }
           }
         },
         {
           "name": "Show Project",
           "request": {
             "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "projects", "{{project_id}}"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "projects", "{{project_id}}"]
+            }
           }
         },
         {
@@ -82,10 +138,14 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Accept", "value": "application/json" },
               { "key": "Content-Type", "value": "application/json" }
             ],
-            "url": { "raw": "{{base_url}}/api/{{version}}/projects", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "projects"] },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/projects",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "projects"]
+            },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"New Project\",\n  \"description\": \"Demo project\",\n  \"start_date\": \"2026-02-01\",\n  \"end_date\": \"2026-02-28\"\n}"
@@ -97,19 +157,30 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Accept", "value": "application/json" },
               { "key": "Content-Type", "value": "application/json" }
             ],
-            "url": { "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "projects", "{{project_id}}"] },
-            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Updated Project Title\"\n}" }
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "projects", "{{project_id}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Project Title\"\n}"
+            }
           }
         },
         {
           "name": "Delete Project (admin)",
           "request": {
             "method": "DELETE",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "projects", "{{project_id}}"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "projects", "{{project_id}}"]
+            }
           }
         }
       ]
@@ -121,7 +192,7 @@
           "name": "List Tasks By Project",
           "request": {
             "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "header": [{ "key": "Accept", "value": "application/json" }],
             "url": {
               "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}/tasks?status=&search=",
               "host": ["{{base_url}}"],
@@ -137,8 +208,12 @@
           "name": "Show Task",
           "request": {
             "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "tasks", "{{task_id}}"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tasks", "{{task_id}}"]
+            }
           }
         },
         {
@@ -146,10 +221,14 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Accept", "value": "application/json" },
               { "key": "Content-Type", "value": "application/json" }
             ],
-            "url": { "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}/tasks", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "projects", "{{project_id}}", "tasks"] },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/projects/{{project_id}}/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "projects", "{{project_id}}", "tasks"]
+            },
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"New Task\",\n  \"description\": \"Task description\",\n  \"status\": \"pending\",\n  \"due_date\": \"2026-02-20\",\n  \"assigned_to\": 1\n}"
@@ -161,19 +240,30 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Accept", "value": "application/json" },
               { "key": "Content-Type", "value": "application/json" }
             ],
-            "url": { "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "tasks", "{{task_id}}"] },
-            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Updated Task Title\"\n}" }
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tasks", "{{task_id}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Task Title\"\n}"
+            }
           }
         },
         {
           "name": "Delete Task (manager)",
           "request": {
             "method": "DELETE",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "tasks", "{{task_id}}"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tasks", "{{task_id}}"]
+            }
           }
         }
       ]
@@ -185,8 +275,12 @@
           "name": "List Comments By Task",
           "request": {
             "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
-            "url": { "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}/comments", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "tasks", "{{task_id}}", "comments"] }
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}/comments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tasks", "{{task_id}}", "comments"]
+            }
           }
         },
         {
@@ -194,11 +288,18 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Accept", "value": "application/json" },
               { "key": "Content-Type", "value": "application/json" }
             ],
-            "url": { "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}/comments", "host": ["{{base_url}}"], "path": ["api", "{{version}}", "tasks", "{{task_id}}", "comments"] },
-            "body": { "mode": "raw", "raw": "{\n  \"body\": \"This is a comment\"\n}" }
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tasks/{{task_id}}/comments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tasks", "{{task_id}}", "comments"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"This is a comment\"\n}"
+            }
           }
         }
       ]

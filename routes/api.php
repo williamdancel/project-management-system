@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\V1\ProjectController;
 use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\Api\V1\CommentController;
 
-Route::prefix(config('api.version'))
+Route::prefix(config('app.version'))
     ->middleware(['api.log'])
     ->group(function () {
 

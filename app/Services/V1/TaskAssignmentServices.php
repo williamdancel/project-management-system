@@ -6,7 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
-class TaskAssignmentService
+class TaskAssignmentServices
 {
     public function assign(Task $task, int $assigneeId): Task
     {

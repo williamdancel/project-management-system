@@ -11,8 +11,6 @@ class CommentService
 {
     public function listForTask(Task $task, User $actor)
     {
-        $this->ensureAssigned($task, $actor);
-
         return $task->comments()
             ->with('user')
             ->latest()
@@ -21,7 +19,6 @@ class CommentService
 
     public function createForTask(Task $task, User $actor, array $data): Comment
     {
-        $this->ensureAssigned($task, $actor);
 
         return Comment::create([
             'body' => $data['body'],
@@ -30,10 +27,4 @@ class CommentService
         ])->load('user');
     }
 
-    private function ensureAssigned(Task $task, User $actor): void
-    {
-        if ((int) $task->assigned_to !== (int) $actor->id) {
-            throw new HttpException(403, 'Forbidden');
-        }
-    }
 }
