@@ -5,6 +5,7 @@ namespace App\Services\V1;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+use App\Jobs\SendTaskAssignedNotificationJob;
 
 class TaskAssignmentServices
 {
@@ -26,6 +27,8 @@ class TaskAssignmentServices
 
         $task->assigned_to = $assignee->id;
         $task->save();
+
+        SendTaskAssignedNotificationJob::dispatch($task->id, $assignee->id);
 
         return $task->fresh(['assignee', 'project']);
     }

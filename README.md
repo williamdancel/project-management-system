@@ -81,12 +81,15 @@ Authorization: Bearer <token>
 - `GET  /api/v1/tasks/{task_id}/comments` *(auth required)*
 - `POST /api/v1/tasks/{task_id}/comments` *(auth required)*
 
+### AppServiceProvider
+- Added automaticallyEagerLoadRelationships Method to eager load all of the queries across the application.
+
 ## Postman
 Import the Postman collection JSON file:
-- `PMS.postman_collection.json`
+- `PMS API v1.postman_collection`
 
 Set collection variables:
-- `base_url` (default: `http://localhost:8000`)
+- `base_url` (default: `http://127.0.0.1:8000`)
 - `token` (paste token from login response)
 - `project_id`, `task_id` (set from API responses)
 
